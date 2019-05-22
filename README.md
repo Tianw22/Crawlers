@@ -3,8 +3,8 @@ Web Clawer of hostadvice.com
 Download web driver of the brower and add to PATH first.
 
 # Run the .py
-/n Open a terminal, input: 
-/n python HostadviceClawer.py
+\n Open a terminal, input: 
+\n python HostadviceClawer.py
 Hit ENTER
 Input the country needs to be checked immediately.
 Hit ENTER
