@@ -14,3 +14,6 @@
 
 ### CDN list Crawler
 ###### Web Crawler of cdnlist.com
+###### python CDNListCrawler.py
+###### pip install git+https://github.com/abenassi/Google-Search-API
+###### python CDNList-GoogleSearch.py
