@@ -36,3 +36,13 @@ for i in range(2,count+2):
     item = name[i-2]
     pd.DataFrame(b).to_excel(writer,'%s'%item)
 writer.save()
+
+#OR save all the records in one list in one sheet.
+# b = []
+# for i in range(2,count+2):
+#     c = len(driver.find_elements_by_xpath('/html[1]/body[1]/div[1]/main[1]/div[2]/div[1]/div[1]/div[1]/section[%i]/ul[1]/li'%i))
+#     for j in range(1,c+1):
+#         com = '/html[1]/body[1]/div[1]/main[1]/div[2]/div[1]/div[1]/div[1]/section[%i]/ul[1]/li[%i]'%(i,j)
+#         t = driver.find_element_by_xpath(com)
+#         b.append(t.text)
+# pd.DataFrame(b).to_excel('outputall.xlsx', header=False, index=False)
