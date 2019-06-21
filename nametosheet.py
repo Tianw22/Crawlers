@@ -45,4 +45,14 @@ writer.save()
 #         com = '/html[1]/body[1]/div[1]/main[1]/div[2]/div[1]/div[1]/div[1]/section[%i]/ul[1]/li[%i]'%(i,j)
 #         t = driver.find_element_by_xpath(com)
 #         b.append(t.text)
+
+#Deduplicate
+# def spacer(text):
+#     return re.sub(r'([0-9])([a-zA-Z])',r"\1 \2",text,re.MULTILINE).strip()
+# for i in range(0,len(b)):
+#     b[i] = b[i].replace(". ",'.')
+#     b[i] = spacer(b[i])
+#     b[i] = titlecase(b[i])
+# b = b.drop_duplicates(keep='first', inplace=False)
+# b = b.reset_index(drop=True)
 # pd.DataFrame(b).to_excel('outputall.xlsx', header=False, index=False)
