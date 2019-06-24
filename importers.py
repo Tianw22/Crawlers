@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import ElementNotVisibleException
 
-importersweb = 'https://www.ic.gc.ca/eic/site/cid-dic.nsf/eng/home'
+importersweb = 'https://www.xxxxxxxxxxxxxxxxxxxxxxxx'
 listcountry = "//a[@id='details-panel3-lnk']"
 china = "//option[contains(text(),'China')]"
 viewcountry = "//input[@id='viewCountry']"
