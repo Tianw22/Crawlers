@@ -60,7 +60,7 @@ def parse():
             # 想要获取文本就获得对象的text属性，
             for x in layout:
                 if(isinstance(x,LTTextBoxHorizontal)):
-                    with open(r'2.txt','a') as f:
+                    with open(r'result.txt','a') as f:
                         results = x.get_text()
                         #print(results)
                         f.write(results  +"\n")
