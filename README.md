@@ -19,4 +19,4 @@
 ###### python FindDomain-GoogleSearch.py => Given company name, roughly find their domains.
 
 ### Scratch Tables in PDF into Excel.
-###### python tablefrompdf.py => Given PDF file, scratch the tables in the file.
+###### python TablefromPDF.py => Given PDF file, scratch the tables in the file.
