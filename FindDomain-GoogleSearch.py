@@ -55,44 +55,60 @@ for item in droplist:
 dffirst = dfcopy.drop_duplicates(['Name'])
 dffirst = dffirst.reset_index()
 sep = '.com/'
-for i in range(0,len(dffirst['Links'])):
-    dffirst['Links'][i] = re.sub(r'.com/*', '.com// ', dffirst['Links'][i])
+dflin = list(dffirst['Links'])
+for i in range(0,len(dflin)):
+    dffirst['Links'][i] = re.sub(r'.com/*', '.com// ', dflin[i])
 dffirst['Links'] = dffirst['Links'].str.split('/ ').str[0]
-dffirst.to_excel('comlist-%s-firstround.xlsx'%today) #This is the result output. > 95% accuracy. Need manual check.
+
+dffirst.to_excel('comlist-%s-firstround.xlsx'%today)
 
 namelist = dffirst['Name']
+descrip = dffirst['Description']
 namelist = namelist.str.split('(').str[0]
 namel = list(namelist)
 for i in range(0,len(namel)):
     namel[i] = namel[i].replace(" ","")
     namel[i] = namel[i].replace(".","")
+    namel[i] = namel[i].replace("-","")
+    namel[i] = namel[i].replace(",","")
     namel[i] = namel[i].lower()
-
-Good = []
-ind = []
+    namel[i] = namel[i].replace("telecom","")
+    namel[i] = namel[i].replace("communications","")
+    namel[i] = namel[i].replace("international","")
+    namel[i] = namel[i].replace("networks","")   
+    namel[i] = namel[i].replace("inc","")
+   
 dffirstcopy = dffirst.copy()
-for item in namel:
-    for i in range(0,len(dffirst['Links'])):
-        result = item in dffirst['Links'][i]
-        if result is True:
-            Good.append(dffirst.iloc[i])
-            ind.append(i)
-            #dffirstcopy = dffirstcopy[~dffirstcopy['Name'].str.contains(item)]
-            
-# GInd = []
-# NCInd = []
-# linkcutl = []
-# dffirstcopy = dffirst.copy()
-# linkl = list(dffirstcopy['Links'])
-# for i in range(0,len(linkl)):
-#     linkl[i] = linkl[i].replace("http://","")
-#     linkl[i] = linkl[i].replace("https://","")
-#     linkl[i] = linkl[i].replace("www.","")
-# linkldf = pd.DataFrame(linkl)
-# newlist = linkldf[0].str.split('.').str[0]
+linkori = list(dffirstcopy['Links'])
+linkl = list(dffirstcopy['Links'])
+for i in range(0,len(linkl)):
+    linkl[i] = linkl[i].replace("http://","")
+    linkl[i] = linkl[i].replace("https://","")
+    linkl[i] = linkl[i].replace("www.","")
+linkldf = pd.DataFrame(linkl)
+
+newlist = linkldf[0].str.split('.').str[0]
+
+Gnlist = []
+GInd = []
+Good = []
+Gdes = []
+for i in range(0,len(newlist)):
+    for j in range(0,len(namel)):
+        if namel[j] in newlist[i]:
+            GInd.append(j)
+            Gnlist.append(namelist[j])
+            Gdes.append(descrip[i])
+            Good.append(linkori[i])
+Goodlist = {"Name":Gnlist,"Link":Good,"Des":Gdes}
+Gooddf = pd.DataFrame(Goodlist)
+
+Gooddfout = Gooddf.drop_duplicates(keep=False,subset='Link')
+Gooddfout.to_excel('GoodLinks%s.xlsx'%today)
 
 
-
-pd.DataFrame(Good).to_excel('Goodtogo%s.xlsx'%today, header=True, index=False)
-#dffirstcopy.to_excel('Needcheck.xlsx', header=True, index=False)
-
+Alllist = {"Name":namelist,"Link":linkori,"Des":descrip}
+Alllist = pd.DataFrame(Alllist)
+Newlist = Alllist.append(Gooddfout, ignore_index = True)
+NClist = Newlist.drop_duplicates(keep=False)
+NClist.to_excel('Needcheck%s.xlsx'%today, header=True, index=False)
