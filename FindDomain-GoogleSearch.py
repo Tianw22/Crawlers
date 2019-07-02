@@ -35,10 +35,20 @@ for i in df['Company']:
     a = a+1
 Total = {"Description":des,"Links":lin, "Name":n}
 df = pd.DataFrame(Total)
-#df.to_csv('list-%s.csv'%today,header = True, index = False)
+#df.to_excel('list-%s.xlsx'%today,header = True, index = False)
 
 dfcopy = df.copy()
-droplist = ['linkedin','bloomberg','glassdoor','crunchbase','wikipedia','facebook','twitter','buzzfile','instagram','wiki','dictionary','owler','zoominfo','indeed','None']
+droplist = ['linkedin','bloomberg','glassdoor','crunchbase','wikipedia','facebook',
+            'twitter','buzzfile','instagram','wiki','dictionary','owler','zoominfo',
+            'indeed','None','yelp','datacentermap','issuu','dialogic','voip-info',
+            'rozee','urdupoint','bbb','cortera','informa','yahoo','reuters',
+            'prnewswire','hoovers','ipinfo','ripe','devex','myip','cypress',
+            'contactout','vocabulary','macmillandictionary','coresite','youtube',
+            'cloudscene','worldvoipproviders','rocketreach','techblog','customercarecontacts',
+            'lookup','mvnoblog','cinando','albany','marinetechnologynews','mymediads','yellow-pages',
+            'bgpview','ukessays','cloudsecurityalliance','voipproviderslist','yellowpages'
+            'whitepages','today','voipfraud','news','.pdf','businessline','mobileworldlive','.edu',
+            '/abs','.html','whirlpool','nameberry','peeringdb','dict.']
 for item in droplist:
     dfcopy = dfcopy[~dfcopy.Links.str.contains(item)]
     
@@ -48,13 +58,15 @@ sep = '.com/'
 for i in range(0,len(dffirst['Links'])):
     dffirst['Links'][i] = re.sub(r'.com/*', '.com// ', dffirst['Links'][i])
 dffirst['Links'] = dffirst['Links'].str.split('/ ').str[0]
+dffirst.to_excel('comlist-%s-firstround.xlsx'%today) #This is the result output. > 95% accuracy. Need manual check.
 
-namel = dffirst['Name']
+namelist = dffirst['Name']
+namelist = namelist.str.split('(').str[0]
+namel = list(namelist)
 for i in range(0,len(namel)):
     namel[i] = namel[i].replace(" ","")
     namel[i] = namel[i].replace(".","")
     namel[i] = namel[i].lower()
-namel = namel.str.split('(').str[0]
 
 Good = []
 ind = []
@@ -65,8 +77,22 @@ for item in namel:
         if result is True:
             Good.append(dffirst.iloc[i])
             ind.append(i)
-            dffirstcopy = dffirstcopy[~dffirstcopy['Name'].str.contains(item)]
+            #dffirstcopy = dffirstcopy[~dffirstcopy['Name'].str.contains(item)]
+            
+# GInd = []
+# NCInd = []
+# linkcutl = []
+# dffirstcopy = dffirst.copy()
+# linkl = list(dffirstcopy['Links'])
+# for i in range(0,len(linkl)):
+#     linkl[i] = linkl[i].replace("http://","")
+#     linkl[i] = linkl[i].replace("https://","")
+#     linkl[i] = linkl[i].replace("www.","")
+# linkldf = pd.DataFrame(linkl)
+# newlist = linkldf[0].str.split('.').str[0]
 
-pd.DataFrame(Good).to_excel('Goodtogo.xlsx', header=True, index=False)
-dffirstcopy.to_excel('Needcheck.xlsx', header=True, index=False)
+
+
+pd.DataFrame(Good).to_excel('Goodtogo%s.xlsx'%today, header=True, index=False)
+#dffirstcopy.to_excel('Needcheck.xlsx', header=True, index=False)
 
