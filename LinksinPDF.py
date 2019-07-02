@@ -36,7 +36,7 @@ for i in range(0,len(ldf[0])):
 comnam = pd.DataFrame(nam)
 comnam[0] = comnam[0].str.split('\n').str[0]
 
-companylist = pd.read_excel('newfile.xlsx') #Excel from tablefromPDF.py 
+companylist = pd.read_excel('newfile.xlsx') #Excel from TablefromPDF.py 
 links = []
 cll = companylist['NameLo']
 cll = cll.str.split('international').str[0]
