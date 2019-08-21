@@ -23,3 +23,6 @@
 
 ### Scratch Links from PDF into Excel.
 ###### python LinkinPDF.py => Given PDF file, scratch all the links in the file. If also given a excel with company names (lower, no space), can match the company names with the links.
+
+### Scratch attendees (Name, Company, Position) from website
+###### python CloudExpo.py
