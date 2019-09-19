@@ -26,3 +26,6 @@
 
 ### Scratch attendees (Name, Company, Position) from website
 ###### python CloudExpo.py
+
+### Delegates of Tech Field Day
+##### python TechFieldDay.py
