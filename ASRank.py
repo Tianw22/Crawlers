@@ -58,4 +58,4 @@ for i in range(1,1650):
     #print(i)
     website = "https://asrank.caida.org/asns?page_number=%i&page_size=40&sort=rank"%i
     df = getlist(website)
-    df.to_csv('aslist-csv.csv',mode='a',header=False)
+    df.to_csv('aslist-csv.csv',mode='a',header=False) #mode = 'a',连续写入同一个csv。
