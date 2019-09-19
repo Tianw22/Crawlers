@@ -29,3 +29,6 @@
 
 ### Delegates of Tech Field Day
 ##### python TechFieldDay.py
+
+### AS info by rank
+##### python ASRank.py
