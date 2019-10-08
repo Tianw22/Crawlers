@@ -32,3 +32,6 @@
 
 ### AS info by rank
 ##### python ASRank.py
+
+### AS names and their neighbors of selected orgnizations.
+##### ASRankSelected.py
